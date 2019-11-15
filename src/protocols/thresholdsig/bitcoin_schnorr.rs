@@ -169,8 +169,8 @@ impl Keys {
 }
 
 pub struct LocalSig {
-    gamma_i: FE,
-    e: FE,
+    pub gamma_i: FE,
+    pub e: FE,
 }
 
 impl LocalSig {
