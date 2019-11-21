@@ -183,7 +183,7 @@ impl LocalSig {
         let alpha_i = local_private_key.x_i.clone();
 
         let e_bn = HSha256::create_hash(&[
-            &local_ephemaral_key.y.bytes_compressed_to_big_int(),
+            &local_ephemaral_key.y.x_coor().unwrap(),
             &local_private_key.y.bytes_compressed_to_big_int(),
             &BigInt::from(message),
         ]);
@@ -274,7 +274,7 @@ impl Signature {
 
     pub fn verify(&self, message: &[u8], pubkey_y: &GE) -> Result<(), Error> {
         let e_bn = HSha256::create_hash(&[
-            &self.v.bytes_compressed_to_big_int(),
+            &self.v.x_coor().unwrap(),
             &pubkey_y.bytes_compressed_to_big_int(),
             &BigInt::from(message),
         ]);
